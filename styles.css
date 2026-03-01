@@ -16,6 +16,7 @@ td {
     background-image: url('images/images\ \(3\).png');
     background-size: 53.9% 94.2%; /* збільшення фото */
     background-position: center;  /* позиція */
+	padding-left: 360px;
     background-repeat: no-repeat;
     display: none;             /* спочатку не показуємо */
     margin: 0 auto;
