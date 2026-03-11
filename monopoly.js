@@ -20,21 +20,22 @@ function Game() {
 	};
 
 	this.next = function() {
-		if (!p.human && p.money < 0) {
-			p.AI.payDebt();
+    var p = player[turn]; // Додайте цей рядок, щоб визначити 'p'
+    
+    if (!p.human && p.money < 0) {
+        p.AI.payDebt();
 
-			if (p.money < 0) {
-				popup("<p>" + p.name + " is bankrupt. All of its assets will be turned over to " + player[p.creditor].name + ".</p>", game.bankruptcy);
-			} else {
-				roll();
-			}
-		} else if (areDiceRolled && doublecount === 0) {
-			play();
-		} else {
-			roll();
-		}
-	};
-
+        if (p.money < 0) {
+            popup("<p>" + p.name + " is bankrupt. All of its assets will be turned over to " + player[p.creditor].name + ".</p>", game.bankruptcy);
+        } else {
+            roll();
+        }
+    } else if (areDiceRolled && doublecount === 0) {
+        play();
+    } else {
+        roll();
+    }
+};
 	this.getDie = function(die) {
 		if (die === 1) {
 
@@ -1279,86 +1280,83 @@ function popup(HTML, action, option) {
 
 
 function updatePosition() {
-	// Reset borders
-	document.getElementById("jail").style.border = "1px solid black";
-	document.getElementById("jailpositionholder").innerHTML = "";
-	for (var i = 0; i < 40; i++) {
-		document.getElementById("cell" + i).style.border = "1px solid black";
-		document.getElementById("cell" + i + "positionholder").innerHTML = "";
+    // Скидаємо рамки та очищуємо позиції
+    document.getElementById("jail").style.border = "1px solid black";
+    document.getElementById("jailpositionholder").innerHTML = "";
+    for (var i = 0; i < 40; i++) {
+        document.getElementById("cell" + i).style.border = "1px solid black";
+        document.getElementById("cell" + i + "positionholder").innerHTML = "";
+    }
 
-	}
+    // Проходимо по клітинках поля
+    for (var x = 0; x < 40; x++) {
+        var playersOnSquare = [];
+        for (var y = 1; y <= pcount; y++) {
+            if (player[y].position === x && !player[y].jail) {
+                playersOnSquare.push(y);
+            }
+        }
 
-	var sq, left, top;
+        // Розставляємо гравців на клітинці
+        for (var z = 0; z < playersOnSquare.length; z++) {
+            var pIdx = playersOnSquare[z];
+            var pObj = player[pIdx];
+            var imgSrc = document.getElementById("p" + pIdx + "-current-img") ? 
+                         document.getElementById("p" + pIdx + "-current-img").src : "";
 
-	for (var x = 0; x < 40; x++) {
-		sq = square[x];
-		left = 0;
-		top = 0;
+            // Розрахунок позицій для сітки (наприклад, 2 фішки в ряд)
+            // Розрахунок позицій для сітки (2 колонки)
+			var col = z % 2; // 0 або 1
+			var row = Math.floor(z / 2); // 0, 1, 2 або 3
 
-		for (var y = turn; y <= pcount; y++) {
+			// Зменшуємо крок зміщення з 20px до 16px
+			// Компактна розстановка: зсув лише на 10-12 пікселів
+var gridX = (z % 2) * 12 - 6; 
+var gridY = Math.floor(z / 2) * 12 - 12;
 
-			if (player[y].position == x && !player[y].jail) {
+document.getElementById("cell" + x + "positionholder").innerHTML += 
+    "<div class='cell-position' title='" + pObj.name + "' style='" +
+    "background-image: url(" + imgSrc + "); " +
+    "border: 2px solid " + pObj.color + "; " +
+    "left: calc(50% + " + gridX + "px); " +
+    "top: calc(50% + " + gridY + "px); " +
+    "transform: translate(-50%, -50%);'>" +
+    "</div>";
+					}
+				}
 
-				document.getElementById("cell" + x + "positionholder").innerHTML += "<div class='cell-position' title='" + player[y].name + "' style='background-color: " + player[y].color + "; left: " + left + "px; top: " + top + "px;'></div>";
-				if (left == 36) {
-					left = 0;
-					top = 12;
-				} else
-					left += 12;
-			}
-		}
+    // Логіка для в'язниці (аналогічна сітка)
+    var playersInJail = [];
+    for (var i = 1; i <= pcount; i++) {
+        if (player[i].jail) playersInJail.push(i);
+    }
 
-		for (var y = 1; y < turn; y++) {
+    for (var j = 0; j < playersInJail.length; j++) {
+        var pJailIdx = playersInJail[j];
+        var pJailObj = player[pJailIdx];
+        var jImgSrc = document.getElementById("p" + pJailIdx + "-current-img") ? 
+                      document.getElementById("p" + pJailIdx + "-current-img").src : "";
+        
+        var jGridX = (j % 2) * 15 - 7;
+        var jGridY = Math.floor(j / 2) * 15 - 7;
 
-			if (player[y].position == x && !player[y].jail) {
-				document.getElementById("cell" + x + "positionholder").innerHTML += "<div class='cell-position' title='" + player[y].name + "' style='background-color: " + player[y].color + "; left: " + left + "px; top: " + top + "px;'></div>";
-				if (left == 36) {
-					left = 0;
-					top = 12;
-				} else
-					left += 12;
-			}
-		}
-	}
+        document.getElementById("jailpositionholder").innerHTML += 
+            "<div class='cell-position' title='" + pJailObj.name + "' style='" +
+            "background-image: url(" + jImgSrc + "); " +
+            "border: 2px solid " + pJailObj.color + "; " +
+            "left: calc(50% + " + jGridX + "px); " +
+            "top: calc(50% + " + jGridY + "px); " +
+            "transform: translate(-50%, -50%);'>" +
+            "</div>";
+    }
 
-	left = 0;
-	top = 53;
-	for (var i = turn; i <= pcount; i++) {
-		if (player[i].jail) {
-			document.getElementById("jailpositionholder").innerHTML += "<div class='cell-position' title='" + player[i].name + "' style='background-color: " + player[i].color + "; left: " + left + "px; top: " + top + "px;'></div>";
-
-			if (left === 36) {
-				left = 0;
-				top = 41;
-			} else {
-				left += 12;
-			}
-		}
-	}
-
-	for (var i = 1; i < turn; i++) {
-		if (player[i].jail) {
-			document.getElementById("jailpositionholder").innerHTML += "<div class='cell-position' title='" + player[i].name + "' style='background-color: " + player[i].color + "; left: " + left + "px; top: " + top + "px;'></div>";
-			if (left === 36) {
-				left = 0;
-				top = 41;
-			} else
-				left += 12;
-		}
-	}
-
-	p = player[turn];
-
-	if (p.jail) {
-		document.getElementById("jail").style.border = "1px solid " + p.color;
-	} else {
-		document.getElementById("cell" + p.position).style.border = "1px solid " + p.color;
-	}
-
-	// for (var i=1; i <= pcount; i++) {
-	// document.getElementById("enlarge"+player[i].position+"token").innerHTML+="<img src='"+tokenArray[i].src+"' height='30' width='30' />";
-	// }
+    // Підсвітка активного гравця
+    var p = player[turn];
+    var activeElement = p.jail ? document.getElementById("jail") : document.getElementById("cell" + p.position);
+    activeElement.style.border = "2px solid " + p.color;
 }
+
+
 
 function updateMoney() {
 	var p = player[turn];
@@ -2646,6 +2644,8 @@ function setup() {
 	document.getElementById("gameBackground").style.display = "block";
 	
 	play();
+	// Вставте це перед кінцем функції setup()
+	$("#control").css("display", "block").show();
 }
 
 // function togglecheck(elementid) {
@@ -3011,5 +3011,41 @@ window.onload = function() {
 
 	$("#trade-menu-item").click(game.trade);
 
+$(document).on("click", ".color-option", function() {
+    var playerNum = $(this).parent().data("player");
+    var colorValue = $(this).data("value");
 
+    // Знімаємо виділення з усіх сусідніх кнопок
+    $(this).parent().find(".color-option").removeClass("selected");
+    // Додаємо виділення поточній
+    $(this).addClass("selected");
+
+    // Оновлюємо значення в прихованому інпуті
+    document.getElementById("player" + playerNum + "color").value = colorValue;
+});
+}
+function toggleDropdown(pNum) {
+    // Закриваємо меню інших гравців
+    document.querySelectorAll('.select-items').forEach(el => {
+        if (el.id !== "p" + pNum + "-options") el.classList.add('select-hide');
+    });
+    // Відкриваємо/закриваємо поточне
+    document.getElementById("p" + pNum + "-options").classList.toggle("select-hide");
+}
+
+function setChar(pNum, colorValue, imgSrc) {
+    document.getElementById("player" + pNum + "color").value = colorValue;
+    document.getElementById("p" + pNum + "-current-img").src = imgSrc;
+    // Зберігаємо шлях до картинки в самому об'єкті гравця для зручності
+    if(player[pNum]) {
+        player[pNum].avatar = imgSrc;
+    }
+    document.getElementById("p" + pNum + "-options").classList.add("select-hide");
+}
+
+// Закриваємо меню, якщо клікнути повз нього
+window.onclick = function(event) {
+    if (!event.target.closest('.custom-select')) {
+        document.querySelectorAll('.select-items').forEach(el => el.classList.add('select-hide'));
+    }
 };

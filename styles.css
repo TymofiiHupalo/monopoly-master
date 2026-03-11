@@ -97,14 +97,18 @@ td {
 
 
 #control {
-	position: absolute;
-	z-index: 9;
-	top: 250px;
-	left: 250px;
-	border: 2px solid black;
-	padding: 10px;
-	display: none;
-	background-color: white;
+    position: fixed;            /* Фіксуємо відносно вікна браузера */
+    z-index: 99999 !important;  /* Найвищий пріоритет шару */
+    top: 50% !important;        /* Центруємо по вертикалі */
+    left: 50% !important;       /* Центруємо по горизонталі */
+    transform: translate(-50%, -50%); /* Зсуваємо на власну половину для ідеального центру */
+    
+    background-color: white;
+    border: 3px solid #305BC9;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    border-radius: 10px;
+    display: none;              /* Початково приховано, JS його увімкне */
 }
 
 #quickstats {
@@ -767,19 +771,23 @@ td {
 	width: 100%;
 }
 
-.cell-position-holder {
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	position: relative;
+.cell-position {
+    width: 26px !important;  /* Ще трохи менше для 8 гравців */
+    height: 26px !important;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    /* Додаємо тонку чорну обводку всередині білої, щоб обличчя виділялися */
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 10;
 }
 
-.cell-position {
-	height: 12px;
-	width: 12px;
-	position: absolute;
-	top: 0px;
-	left: 0px;
+.cell-position-holder {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: visible; /* Дозволяє фішкам трохи виходити за межі центру */
 }
 
 .cell-owner {
@@ -838,4 +846,74 @@ td {
 	top: 0px;
 	width: 15px;
 
+}
+.color-picker {
+    display: inline-flex;
+    gap: 5px;
+    vertical-align: middle;
+    margin: 5px;
+}
+
+.color-option {
+    width: 25px;
+    height: 25px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.color-option:hover {
+    transform: scale(1.2);
+}
+
+.color-option.selected {
+    border-color: #000;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+.custom-select {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: px;
+	height: auto;
+    margin: 5px 20px;
+}
+
+.select-selected {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;	
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.select-selected img, .select-items img {
+    width: 60px;
+    height: 60px;
+    display: block;
+
+}
+
+.select-items {
+    position: absolute;
+    background-color: white;
+    border: 12px solid #999;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки картинок */
+    gap: 5px;
+    padding: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover {
+    background-color: #ddd;
+    cursor: pointer;
 }

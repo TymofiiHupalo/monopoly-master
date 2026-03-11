@@ -254,219 +254,232 @@
 			</select>
 		</div>
 
-		<div id="player1input" class="player-input">
-			Player 1: <input type="text" id="player1name" title="Player name" maxlength="16" value="Player 1" />
-			<select id="player1color" title="Player color">
-				<option style="color: aqua;">Aqua</option>
-				<option style="color: black;">Black</option>
-				<option style="color: blue;">Blue</option>
-				<option style="color: fuchsia;">Fuchsia</option>
-				<option style="color: gray;">Gray</option>
-				<option style="color: green;">Green</option>
-				<option style="color: lime;">Lime</option>
-				<option style="color: maroon;">Maroon</option>
-				<option style="color: navy;">Navy</option>
-				<option style="color: olive;">Olive</option>
-				<option style="color: orange;">Orange</option>
-				<option style="color: purple;">Purple</option>
-				<option style="color: red;">Red</option>
-				<option style="color: silver;">Silver</option>
-				<option style="color: teal;">Teal</option>
-				<option selected="selected" style="color: yellow;">Yellow</option>
-			</select>
-			<select id="player1ai" title="Choose whether this player is controled by a human or by the computer." onclick="document.getElementById('player1name').disabled = this.value !== '0';">
-				<option value="0" selected="selected">Human</option>
-				<option value="1">AI (Test)</option>
-			</select>
-		</div>
+<div id="player1input" class="player-input">
+    Гравець 1: <input type="text" id="player1name" title="Player name" maxlength="16" value="Гравець 1" />
+    
+    <input type="hidden" id="player1color" value="blue">
+
+    <div class="custom-select" id="p1-select">
+        <div class="select-selected" onclick="toggleDropdown(1)">
+            <img id="p1-current-img" src="images/ahmetov.jpg" alt="Blue">
+        </div>
+        
+        <div class="select-items select-hide" id="p1-options">
+            <div onclick="setChar(1, 'aqua', 'images/kolom.jpg')"><img src="images/kolom.jpg"></div>
+            <div onclick="setChar(1, 'red', 'images/tymoshenko.jpg')"><img src="images/tymoshenko.jpg"></div>
+            <div onclick="setChar(1, 'blue', 'images/poroh.jpg')"><img src="images/poroh.jpg"></div>
+            <div onclick="setChar(1, 'yellow', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+			<div onclick="setChar(1, 'black', 'images/lashko.jpg')"><img src="images/lashko.jpg"></div>
+			<div onclick="setChar(1, 'green', 'images/yacik.jpg')"><img src="images/yacik.jpg"></div>
+			<div onclick="setChar(1, 'orange', 'images/ahmetov.jpg')"><img src="images/ahmetov.jpg"></div>
+			<div onclick="setChar(1, 'purple', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+            </div>
+    </div>
+
+    <select id="player1ai" ... onchange="document.getElementById('player1name').disabled = this.value !== '0';">
+        <option value="0" selected="selected">Human</option>
+        <option value="1">AI (Test)</option>
+    </select>
+</div>
 
 		<div id="player2input" class="player-input">
-			Player 2: <input type="text" id="player2name" title="Player name" maxlength="16" value="Player 2" />
-			<select id="player2color" title="Player color">
-				<option style="color: aqua;">Aqua</option>
-				<option style="color: black;">Black</option>
-				<option selected="selected" style="color: blue;">Blue</option>
-				<option style="color: fuchsia;">Fuchsia</option>
-				<option style="color: gray;">Gray</option>
-				<option style="color: green;">Green</option>
-				<option style="color: lime;">Lime</option>
-				<option style="color: maroon;">Maroon</option>
-				<option style="color: navy;">Navy</option>
-				<option style="color: olive;">Olive</option>
-				<option style="color: orange;">Orange</option>
-				<option style="color: purple;">Purple</option>
-				<option style="color: red;">Red</option>
-				<option style="color: silver;">Silver</option>
-				<option style="color: teal;">Teal</option>
-				<option style="color: yellow;">Yellow</option>
-			</select>
-			<select id="player2ai" title="Choose whether this player is controled by a human or by the computer." onclick="document.getElementById('player2name').disabled = this.value !== '0';">
-				<option value="0" selected="selected">Human</option>
-				<option value="1">AI (Test)</option>
-			</select>
-		</div>
+    Гравець 2: <input type="text" id="player2name" title="Player name" maxlength="16" value="Гравець 2" />
+    
+    <input type="hidden" id="player2color" value="Aqua">
+
+    <div class="custom-select" id="p2-select">
+        <div class="select-selected" onclick="toggleDropdown(2)">
+            <img id="p2-current-img" src="images/kolom.jpg" alt="Aqua">
+        </div>
+        
+        <div class="select-items select-hide" id="p2-options">
+            <div onclick="setChar(2, 'aqua', 'images/kolom.jpg')"><img src="images/kolom.jpg"></div>
+            <div onclick="setChar(2, 'red', 'images/tymoshenko.jpg')"><img src="images/tymoshenko.jpg"></div>
+            <div onclick="setChar(2, 'blue', 'images/poroh.jpg')"><img src="images/poroh.jpg"></div>
+            <div onclick="setChar(2, 'yellow', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+			<div onclick="setChar(2, 'black', 'images/lashko.jpg')"><img src="images/lashko.jpg"></div>
+			<div onclick="setChar(2, 'green', 'images/yacik.jpg')"><img src="images/yacik.jpg"></div>
+			<div onclick="setChar(2, 'orange', 'images/ahmetov.jpg')"><img src="images/ahmetov.jpg"></div>
+			<div onclick="setChar(2, 'purple', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+            </div>
+    </div>
+
+    <select id="player2ai" ... onchange="document.getElementById('player2name').disabled = this.value !== '0';">
+        <option value="0" selected="selected">Human</option>
+        <option value="1">AI (Test)</option>
+    </select>
+</div>
 
 		<div id="player3input" class="player-input">
-			Player 3: <input type="text" id="player3name" title="Player name" maxlength="16" value="Player 3" />
-			<select id="player3color" title="Player color">
-				<option style="color: aqua;">Aqua</option>
-				<option style="color: black;">Black</option>
-				<option style="color: blue;">Blue</option>
-				<option style="color: fuchsia;">Fuchsia</option>
-				<option style="color: gray;">Gray</option>
-				<option style="color: green;">Green</option>
-				<option style="color: lime;">Lime</option>
-				<option style="color: maroon;">Maroon</option>
-				<option style="color: navy;">Navy</option>
-				<option style="color: olive;">Olive</option>
-				<option style="color: orange;">Orange</option>
-				<option style="color: purple;">Purple</option>
-				<option selected="selected" style="color: red;">Red</option>
-				<option style="color: silver;">Silver</option>
-				<option style="color: teal;">Teal</option>
-				<option style="color: yellow;">Yellow</option>
-			</select>
-			<select id="player3ai" title="Choose whether this player is controled by a human or by the computer." onclick="document.getElementById('player3name').disabled = this.value !== '0';">
-				<option value="0" selected="selected">Human</option>
-				<option value="1">AI (Test)</option>
-			</select>
-		</div>
+    Гравець 3: <input type="text" id="player3name" title="Player name" maxlength="16" value="Гравець 3" />
+    
+    <input type="hidden" id="player3color" value="Red">
 
-		<div id="player4input" class="player-input">
-			Player 4: <input type="text" id="player4name" title="Player name" maxlength="16" value="Player 4" />
-			<select id="player4color" title="Player color">
-				<option style="color: aqua;">Aqua</option>
-				<option style="color: black;">Black</option>
-				<option style="color: blue;">Blue</option>
-				<option style="color: fuchsia;">Fuchsia</option>
-				<option style="color: gray;">Gray</option>
-				<option style="color: green;">Green</option>
-				<option selected="selected" style="color: lime;">Lime</option>
-				<option style="color: maroon;">Maroon</option>
-				<option style="color: navy;">Navy</option>
-				<option style="color: olive;">Olive</option>
-				<option style="color: orange;">Orange</option>
-				<option style="color: purple;">Purple</option>
-				<option style="color: red;">Red</option>
-				<option style="color: silver;">Silver</option>
-				<option style="color: teal;">Teal</option>
-				<option style="color: yellow;">Yellow</option>
-			</select>
-			<select id="player4ai" title="Choose whether this player is controled by a human or by the computer." onclick="document.getElementById('player4name').disabled = this.value !== '0';">
-				<option value="0" selected="selected">Human</option>
-				<option value="1">AI (Test)</option>
-			</select>
-		</div>
+    <div class="custom-select" id="p3-select">
+        <div class="select-selected" onclick="toggleDropdown(3)">
+            <img id="p3-current-img" src="images/tymoshenko.jpg" alt="Red">
+        </div>
+        
+        <div class="select-items select-hide" id="p3-options">
+            <div onclick="setChar(3, 'aqua', 'images/kolom.jpg')"><img src="images/kolom.jpg"></div>
+            <div onclick="setChar(3, 'red', 'images/tymoshenko.jpg')"><img src="images/tymoshenko.jpg"></div>
+            <div onclick="setChar(3, 'blue', 'images/poroh.jpg')"><img src="images/poroh.jpg"></div>
+            <div onclick="setChar(3, 'yellow', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+			<div onclick="setChar(3, 'black', 'images/lashko.jpg')"><img src="images/lashko.jpg"></div>
+			<div onclick="setChar(3, 'green', 'images/yacik.jpg')"><img src="images/yacik.jpg"></div>
+			<div onclick="setChar(3, 'orange', 'images/ahmetov.jpg')"><img src="images/ahmetov.jpg"></div>
+			<div onclick="setChar(3, 'purple', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+            </div>
+    </div>
+
+    <select id="player3ai" ... onchange="document.getElementById('player3name').disabled = this.value !== '0';">
+        <option value="0" selected="selected">Human</option>
+        <option value="1">AI (Test)</option>
+    </select>
+</div>
+
+<div id="player4input" class="player-input">
+    Гравець 4: <input type="text" id="player4name" title="Player name" maxlength="16" value="Гравець 4" />
+    
+    <input type="hidden" id="player4color" value="yellow">
+
+    <div class="custom-select" id="p4-select">
+        <div class="select-selected" onclick="toggleDropdown(4)">
+            <img id="p4-current-img" src="images/zela.jpg" alt="Yellow">
+        </div>
+        
+        <div class="select-items select-hide" id="p4-options">
+            <div onclick="setChar(4, 'aqua', 'images/kolom.jpg')"><img src="images/kolom.jpg"></div>
+            <div onclick="setChar(4, 'red', 'images/tymoshenko.jpg')"><img src="images/tymoshenko.jpg"></div>
+            <div onclick="setChar(4, 'blue', 'images/poroh.jpg')"><img src="images/poroh.jpg"></div>
+            <div onclick="setChar(4, 'yellow', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+			<div onclick="setChar(4, 'black', 'images/lashko.jpg')"><img src="images/lashko.jpg"></div>
+			<div onclick="setChar(4, 'green', 'images/yacik.jpg')"><img src="images/yacik.jpg"></div>
+			<div onclick="setChar(4, 'orange', 'images/ahmetov.jpg')"><img src="images/ahmetov.jpg"></div>
+			<div onclick="setChar(4, 'purple', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+            </div>
+    </div>
+
+    <select id="player4ai" ... onchange="document.getElementById('player4name').disabled = this.value !== '0';">
+        <option value="0" selected="selected">Human</option>
+        <option value="1">AI (Test)</option>
+    </select>
+</div>
 
 		<div id="player5input" class="player-input">
-			Player 5: <input type="text" id="player5name" title="Player name" maxlength="16" value="Player 5" />
-			<select id="player5color" title="Player color">
-				<option style="color: aqua;">Aqua</option>
-				<option style="color: black;">Black</option>
-				<option style="color: blue;">Blue</option>
-				<option style="color: fuchsia;">Fuchsia</option>
-				<option style="color: gray;">Gray</option>
-				<option selected="selected" style="color: green;">Green</option>
-				<option style="color: lime;">Lime</option>
-				<option style="color: maroon;">Maroon</option>
-				<option style="color: navy;">Navy</option>
-				<option style="color: olive;">Olive</option>
-				<option style="color: orange;">Orange</option>
-				<option style="color: purple;">Purple</option>
-				<option style="color: red;">Red</option>
-				<option style="color: silver;">Silver</option>
-				<option style="color: teal;">Teal</option>
-				<option style="color: yellow;">Yellow</option>
-			</select>
-			<select id="player5ai" title="Choose whether this player is controled by a human or by the computer." onclick="document.getElementById('player5name').disabled = this.value !== '0';">
-				<option value="0" selected="selected">Human</option>
-				<option value="1">AI (Test)</option>
-			</select>
-		</div>
+    Гравець 5: <input type="text" id="player5name" title="Player name" maxlength="16" value="Гравець 5" />
+    
+    <input type="hidden" id="player5color" value="black">
+
+    <div class="custom-select" id="p5-select">
+        <div class="select-selected" onclick="toggleDropdown(5)">
+            <img id="p5-current-img" src="images/lashko.jpg" alt="Black">
+        </div>
+        
+        <div class="select-items select-hide" id="p5-options">
+            <div onclick="setChar(5, 'aqua', 'images/kolom.jpg')"><img src="images/kolom.jpg"></div>
+            <div onclick="setChar(5, 'red', 'images/tymoshenko.jpg')"><img src="images/tymoshenko.jpg"></div>
+            <div onclick="setChar(5, 'blue', 'images/poroh.jpg')"><img src="images/poroh.jpg"></div>
+            <div onclick="setChar(5, 'yellow', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+			<div onclick="setChar(5, 'black', 'images/lashko.jpg')"><img src="images/lashko.jpg"></div>
+			<div onclick="setChar(5, 'green', 'images/yacik.jpg')"><img src="images/yacik.jpg"></div>
+			<div onclick="setChar(5, 'orange', 'images/ahmetov.jpg')"><img src="images/ahmetov.jpg"></div>
+			<div onclick="setChar(5, 'purple', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+            </div>
+    </div>
+
+    <select id="player5ai" ... onchange="document.getElementById('player5name').disabled = this.value !== '0';">
+        <option value="0" selected="selected">Human</option>
+        <option value="1">AI (Test)</option>
+    </select>
+</div>
 
 		<div id="player6input" class="player-input">
-			Player 6: <input type="text" id="player6name" title="Player name" maxlength="16" value="Player 6" />
-			<select id="player6color" title="Player color">
-				<option selected="selected" style="color: aqua;">Aqua</option>
-				<option style="color: black;">Black</option>
-				<option style="color: blue;">Blue</option>
-				<option style="color: fuchsia;">Fuchsia</option>
-				<option style="color: gray;">Gray</option>
-				<option style="color: green;">Green</option>
-				<option style="color: lime;">Lime</option>
-				<option style="color: maroon;">Maroon</option>
-				<option style="color: navy;">Navy</option>
-				<option style="color: olive;">Olive</option>
-				<option style="color: orange;">Orange</option>
-				<option style="color: purple;">Purple</option>
-				<option style="color: red;">Red</option>
-				<option style="color: silver;">Silver</option>
-				<option style="color: teal;">Teal</option>
-				<option style="color: yellow;">Yellow</option>
-			</select>
-			<select id="player6ai" title="Choose whether this player is controled by a human or by the computer." onclick="document.getElementById('player6name').disabled = this.value !== '0';">
-				<option value="0" selected="selected">Human</option>
-				<option value="1">AI (Test)</option>
-			</select>
-		</div>
+    Гравець 6: <input type="text" id="player6name" title="Player name" maxlength="16" value="Гравець 6" />
+    
+    <input type="hidden" id="player6color" value="green">
 
-		<div id="player7input" class="player-input">
-			Player 7: <input type="text" id="player7name" title="Player name" maxlength="16" value="Player 7" />
-			<select id="player7color" title="Player color">
-				<option style="color: aqua;">Aqua</option>
-				<option style="color: black;">Black</option>
-				<option style="color: blue;">Blue</option>
-				<option style="color: fuchsia;">Fuchsia</option>
-				<option style="color: gray;">Gray</option>
-				<option style="color: green;">Green</option>
-				<option style="color: lime;">Lime</option>
-				<option style="color: maroon;">Maroon</option>
-				<option style="color: navy;">Navy</option>
-				<option style="color: olive;">Olive</option>
-				<option selected="selected" style="color: orange;">Orange</option>
-				<option style="color: purple;">Purple</option>
-				<option style="color: red;">Red</option>
-				<option style="color: silver;">Silver</option>
-				<option style="color: teal;">Teal</option>
-				<option style="color: yellow;">Yellow</option>
-			</select>
-			<select id="player7ai" title="Choose whether this player is controled by a human or by the computer." onclick="document.getElementById('player7name').disabled = this.value !== '0';">
-				<option value="0" selected="selected">Human</option>
-				<option value="1">AI (Test)</option>
-			</select>
-		</div>
+    <div class="custom-select" id="p6-select">
+        <div class="select-selected" onclick="toggleDropdown(6)">
+            <img id="p6-current-img" src="images/yacik.jpg" alt="Green">
+        </div>
+        
+        <div class="select-items select-hide" id="p6-options">
+            <div onclick="setChar(6, 'aqua', 'images/kolom.jpg')"><img src="images/kolom.jpg"></div>
+            <div onclick="setChar(6, 'red', 'images/tymoshenko.jpg')"><img src="images/tymoshenko.jpg"></div>
+            <div onclick="setChar(6, 'blue', 'images/poroh.jpg')"><img src="images/poroh.jpg"></div>
+            <div onclick="setChar(6, 'yellow', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+			<div onclick="setChar(6, 'black', 'images/lashko.jpg')"><img src="images/lashko.jpg"></div>
+			<div onclick="setChar(6, 'green', 'images/yacik.jpg')"><img src="images/yacik.jpg"></div>
+			<div onclick="setChar(6, 'orange', 'images/ahmetov.jpg')"><img src="images/ahmetov.jpg"></div>
+			<div onclick="setChar(6, 'purple', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+            </div>
+    </div>
 
-		<div id="player8input" class="player-input">
-			Player 8: <input type="text" id="player8name" title="Player name" maxlength="16" value="Player 8" />
-			<select id="player8color" title="Player color">
-				<option style="color: aqua;">Aqua</option>
-				<option style="color: black;">Black</option>
-				<option style="color: blue;">Blue</option>
-				<option style="color: fuchsia;">Fuchsia</option>
-				<option style="color: gray;">Gray</option>
-				<option style="color: green;">Green</option>
-				<option style="color: lime;">Lime</option>
-				<option style="color: maroon;">Maroon</option>
-				<option style="color: navy;">Navy</option>
-				<option style="color: olive;">Olive</option>
-				<option style="color: orange;">Orange</option>
-				<option selected="selected" style="color: purple;">Purple</option>
-				<option style="color: red;">Red</option>
-				<option style="color: silver;">Silver</option>
-				<option style="color: teal;">Teal</option>
-				<option style="color: yellow;">Yellow</option>
-			</select>
-			<select id="player8ai" title="Choose whether this player is controled by a human or by the computer." onclick="document.getElementById('player8name').disabled = this.value !== '0';">
-				<option value="0" selected="selected">Human</option>
-				<option value="1">AI (Test)</option>
-			</select>
-		</div>
+    <select id="player6ai" ... onchange="document.getElementById('player6name').disabled = this.value !== '0';">
+        <option value="0" selected="selected">Human</option>
+        <option value="1">AI (Test)</option>
+    </select>
+</div>
 
+<div id="player7input" class="player-input">
+    Гравець 7: <input type="text" id="player7name" title="Player name" maxlength="16" value="Гравець 7" />
+    
+    <input type="hidden" id="player7color" value="orange">
+
+    <div class="custom-select" id="p7-select">
+        <div class="select-selected" onclick="toggleDropdown(7)">
+            <img id="p7-current-img" src="images/ahmetov.jpg" alt="Orange">
+        </div>
+        
+        <div class="select-items select-hide" id="p7-options">
+            <div onclick="setChar(7, 'aqua', 'images/kolom.jpg')"><img src="images/kolom.jpg"></div>
+            <div onclick="setChar(7, 'red', 'images/tymoshenko.jpg')"><img src="images/tymoshenko.jpg"></div>
+            <div onclick="setChar(7, 'blue', 'images/poroh.jpg')"><img src="images/poroh.jpg"></div>
+            <div onclick="setChar(7, 'yellow', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+			<div onclick="setChar(7, 'black', 'images/lashko.jpg')"><img src="images/lashko.jpg"></div>
+			<div onclick="setChar(7, 'green', 'images/yacik.jpg')"><img src="images/yacik.jpg"></div>
+			<div onclick="setChar(7, 'orange', 'images/ahmetov.jpg')"><img src="images/ahmetov.jpg"></div>
+			<div onclick="setChar(7, 'purple', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+            </div>
+    </div>
+
+    <select id="player7ai" ... onchange="document.getElementById('player7name').disabled = this.value !== '0';">
+        <option value="0" selected="selected">Human</option>
+        <option value="1">AI (Test)</option>
+    </select>
+</div>
+
+<div id="player8input" class="player-input">
+    Гравець 8: <input type="text" id="player8name" title="Player name" maxlength="16" value="Гравець 8" />
+    
+    <input type="hidden" id="player8color" value="purples">
+
+    <div class="custom-select" id="p8-select">
+        <div class="select-selected" onclick="toggleDropdown(8)">
+            <img id="p8-current-img" src="images/zela.jpg" alt="Purple">
+        </div>
+        
+        <div class="select-items select-hide" id="p8-options">
+            <div onclick="setChar(8, 'aqua', 'images/kolom.jpg')"><img src="images/kolom.jpg"></div>
+            <div onclick="setChar(8, 'red', 'images/tymoshenko.jpg')"><img src="images/tymoshenko.jpg"></div>
+            <div onclick="setChar(8, 'blue', 'images/poroh.jpg')"><img src="images/poroh.jpg"></div>
+            <div onclick="setChar(8, 'yellow', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+			<div onclick="setChar(8, 'black', 'images/lashko.jpg')"><img src="images/lashko.jpg"></div>
+			<div onclick="setChar(8, 'green', 'images/yacik.jpg')"><img src="images/yacik.jpg"></div>
+			<div onclick="setChar(8, 'orange', 'images/ahmetov.jpg')"><img src="images/ahmetov.jpg"></div>
+			<div onclick="setChar(8, 'purple', 'images/zela.jpg')"><img src="images/zela.jpg"></div>
+            </div>
+    </div>
+
+    <select id="player8ai" ... onchange="document.getElementById('player8name').disabled = this.value !== '0';">
+        <option value="0" selected="selected">Human</option>
+        <option value="1">AI (Test)</option>
+    </select>
+</div>
 		<div style="margin: 20px 0px;">
 			<input type="button" value="Start Game" onclick="setup();" title="Begin playing." />
 		</div>
-
-		<div id="noF5">Note: Refreshing this page or navigating away from it may end your game without warning.</div>
 	</div>
 
 	<div id="control">
