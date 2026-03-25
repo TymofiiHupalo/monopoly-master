@@ -1,10 +1,24 @@
 body {
-	background: #FFFFFF;
+	background-image: url('images/background2.png');
 	width: 800px;
 	height: 500px;       /* задаємо ширину body */
-    margin: 0 auto; 
+    margin: 0 auto;
+	background-position: fixed; 
 }
-
+#mainMenuBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Ваше основне фото міста */
+    background-image: url('images/background.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; 
+    display: block; /* Показуємо при завантаженні */
+}
 td {
 	font-size: 12px;
 	font-family: arial, sans-serif;
@@ -22,10 +36,24 @@ td {
     margin: -12px;   
 	margin-top: 100px;        /* центруємо блок */
 }
-#setup {
-	display: none;
-	margin: 15px;
-}
+	#setup {
+		display: none; /* Гарантуємо, що воно приховане за замовчуванням */
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		
+		background: rgba(255, 255, 255, 0.15);
+		backdrop-filter: blur(5px);
+		padding: 30px;
+		border-radius: 15px;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		
+		text-align: center;
+		min-width: 400px;
+		z-index: 5; /* Низький рівень */
+	}
+
 
 #moneybar {
 	float: right;
@@ -79,7 +107,10 @@ td {
 	display: none;
 	border: 2px solid black;
 	border-spacing: 0px;
-
+	background-image: url('images/images\ \(3\).png');
+	background-repeat: no-repeat;
+    background-size: 100% 100%; /* Розтягує фото точно по ширині та висоті board */
+    background-position: center;
 	float: left;
     background-color: transparent;
     border-collapse: collapse;
@@ -341,7 +372,7 @@ td {
 	overflow-x: auto;
 }
 
-/* #popupclose {
+#popupclose {
 	display: none;
 	position: absolute;
 	top: -24px;
@@ -352,7 +383,7 @@ td {
 	cursor: pointer;
 	overflow: visible;
 	z-index: 12;
-} */
+} 
 
 #popupclose input {
 	margin: 0px;

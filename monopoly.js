@@ -2630,8 +2630,12 @@ function setup() {
 	}
 
 	$("#board, #moneybar").show();
-	$("#setup").hide();
+	$("#setup").hide(); 
+    
+    // 2. Ховаємо фон головного меню
+    $("#mainMenuBackground").hide(); 
 
+    // 3. Показуємо ігрові елементи (дошку, гроші, кнопки)
 	if (pcount === 2) {
 		document.getElementById("stats").style.width = "454px";
 	} else if (pcount === 3) {
